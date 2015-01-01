@@ -1,0 +1,66 @@
+#!/bin/bash
+
+# CLI Cut, Copy, Paste files, for bash
+function xcv() {
+  local options=""
+  local xcvdir="$HOME/.xcv"
+  local xcvfiles="$xcvdir/*"
+  mkdir -p $xcvdir
+
+  function rmxcv() {
+    rm -rf $xcvfiles
+  }
+
+  case "$1" in
+  x)
+    # Cut files
+    if [[ $# -lt 2 ]]; then
+      printf "Error Cutting: not enough options\n\n"
+      xcv
+    else
+      rmxcv
+      mv $(echo "$@" | sed "s#^x##") $xcvdir
+    fi
+    ;;
+  c)
+    # Copy files
+    if [[ $# -lt 2 ]]; then
+      printf "Error Copying: not enough options\n\n"
+      xcv
+    else
+      rmxcv
+      cp $(echo "$@" | sed "s#^c ##") $xcvdir
+    fi
+    ;;
+  v)
+    # Paste files
+    cp -r $xcvfiles .
+    rmxcv
+    ;;
+  l)
+    # List files available for pasting
+    options=$(echo "$@" | sed "s#^l##")
+    ls $options $xcvdir
+    ;;
+  *)
+    cat <<EOF
+Usage: $ xcv <x|c|v|l> [options]
+
+  Description:
+    xcv wraps the cp, mv and ls built in commands, however
+    cutting (x) and copying (c) do not require a target directory, while
+    pasting (v) and listing (l) do not require a source directory, because all selected
+    files are placed into, listed and pulled from:
+    $HOME/.xcv
+
+  Options:
+    x  Cut files, using the mv command options
+    c  Copy files, using the cp command options
+    v  Paste files into the current working directory
+    l  List files available for pasting, using the ls command options
+
+EOF
+    ;;
+  esac
+}
+xcv $@

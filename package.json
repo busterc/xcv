@@ -1,0 +1,31 @@
+{
+  "name": "xcv",
+  "version": "1.0.0",
+  "description": "Cut, Copy and Paste files with Bash",
+  "bin": {
+    "xcv": "xcv"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/busterc/xcv"
+  },
+  "keywords": [
+    "xcv",
+    "cut",
+    "copy",
+    "paste",
+    "move",
+    "files",
+    "bash",
+    "cli",
+    "cp",
+    "mv",
+    "shell"
+  ],
+  "author": "Buster Collings",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/busterc/xcv/issues"
+  },
+  "homepage": "https://github.com/busterc/xcv"
+}
