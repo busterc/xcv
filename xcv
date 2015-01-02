@@ -2,6 +2,9 @@
 
 # CLI Cut, Copy, Paste files, for bash
 function xcv() {
+  unset GLOBIGNORE
+  shopt -s dotglob
+
   local options=""
   local xcvdir="$HOME/.xcv"
   mkdir -p "$xcvdir"
