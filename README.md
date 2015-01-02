@@ -20,6 +20,14 @@ Usage: $ xcv <x|c|v|l> [options]
     l  List files available for pasting, using the ls command options
 ```
 
+## Bpkg Installation
+
+With [bpkg](https://github.com/bpkg/bpkg) do:
+
+```sh
+$ bpkg install busterc/xcv
+```
+
 ## NPM Installation
 
 ```sh
