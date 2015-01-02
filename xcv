@@ -17,7 +17,7 @@ function xcv() {
   x)
     # Cut files
     if [[ $# -lt 1 ]]; then
-      printf "Error Cutting: not enough options\n\n"
+      printf >&2 "Error Cutting: not enough options\n\n"
       xcv
     else
       rmxcv
@@ -27,7 +27,7 @@ function xcv() {
   c)
     # Copy files
     if [[ $# -lt 1 ]]; then
-      printf "Error Copying: not enough options\n\n"
+      printf >&2 "Error Copying: not enough options\n\n"
       xcv
     else
       rmxcv
