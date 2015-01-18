@@ -2,45 +2,49 @@
 
 # CLI Cut, Copy, Paste files, for bash
 function xcv() {
+  unset GLOBIGNORE
+  shopt -s dotglob
+
   local options=""
   local xcvdir="$HOME/.xcv"
-  local xcvfiles="$xcvdir/*"
-  mkdir -p $xcvdir
+  mkdir -p "$xcvdir"
 
   function rmxcv() {
-    rm -rf $xcvfiles
+    rm -rf "$xcvdir"
+    mkdir -p "$xcvdir"
   }
 
-  case "$1" in
+  local action=$1
+  shift
+  case "$action" in
   x)
     # Cut files
-    if [[ $# -lt 2 ]]; then
-      printf "Error Cutting: not enough options\n\n"
+    if [[ $# -lt 1 ]]; then
+      printf >&2 "Error Cutting: not enough options\n\n"
       xcv
     else
       rmxcv
-      mv $(echo "$@" | sed "s#^x##") $xcvdir
+      mv "$@" "$xcvdir"
     fi
     ;;
   c)
     # Copy files
-    if [[ $# -lt 2 ]]; then
-      printf "Error Copying: not enough options\n\n"
+    if [[ $# -lt 1 ]]; then
+      printf >&2 "Error Copying: not enough options\n\n"
       xcv
     else
       rmxcv
-      cp $(echo "$@" | sed "s#^c ##") $xcvdir
+      cp "$@" "$xcvdir"
     fi
     ;;
   v)
     # Paste files
-    cp -r $xcvfiles .
+    cp -r "$xcvdir"/* .
     rmxcv
     ;;
   l)
     # List files available for pasting
-    options=$(echo "$@" | sed "s#^l##")
-    ls $options $xcvdir
+    ls "$@" "$xcvdir"
     ;;
   *)
     cat <<EOF
@@ -63,4 +67,4 @@ EOF
     ;;
   esac
 }
-xcv $@
+xcv "$@"
