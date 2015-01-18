@@ -2,6 +2,8 @@
   "name": "xcv",
   "version": "1.0.0",
   "description": "Cut, Copy and Paste files with Bash",
+  "global": true,
+  "install": "install -c xcv ${PREFIX:-/usr/local}/bin",
   "bin": {
     "xcv": "xcv"
   },
