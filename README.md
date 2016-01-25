@@ -20,6 +20,12 @@ Usage: $ xcv <x|c|v|l> [options]
     l  List files available for pasting, using the ls command options
 ```
 
+## Homebrew Installation
+
+```sh
+$ brew install xcv
+```
+
 ## Bpkg Installation
 
 With [bpkg](https://github.com/bpkg/bpkg) do:
